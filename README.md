@@ -1,4 +1,4 @@
-# RipThenCode
+# Winkle
 Scripts to rip and encode blurays
 
 Usage
