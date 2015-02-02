@@ -1,6 +1,8 @@
 #!/bin/bash
 
-processingdir=$1	
+processingdir=$1
+outputdir=$2
+postripencode=$3
 
 sourcedrive="/dev/sr0"
 extension="rip"
@@ -14,7 +16,7 @@ dir=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 if [[ `ls -l /dev/disk/by-label/ | grep sr0 | wc -l` == 1 ]]; then
 	dtstart=`date`
 
-	mkdir -p $processingdir
+	mkdir -p $processingdir	
 
 	title=$(blkid -o value -s LABEL $sourcedrive)
 	title=${title// /_}
@@ -44,4 +46,8 @@ if [[ `ls -l /dev/disk/by-label/ | grep sr0 | wc -l` == 1 ]]; then
 	fi
 
 	eject $sourcedrive
+
+	if [ "$postripencode" = true ] ; then
+	    $dir/encode.sh $processingdir $outputdir
+	fi
 fi
