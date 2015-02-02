@@ -19,6 +19,5 @@ for file in $(find $sourcepath -name '*.rip'); do
 
 	chmod 777 $destpath/$destfile
 
-	mv $file "$file".encoded
 	rm $file
 done
